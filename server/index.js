@@ -3,7 +3,6 @@ const app = express()
 const cors = require('cors')
 const rq = require('request')
 const dotenv = require('dotenv')
-//import {steamGamesData} from './steamGamesData.js'//
 
 const requestLogger = (request, response, next) => {
     console.log('Method:', request.method)
@@ -13,8 +12,8 @@ const requestLogger = (request, response, next) => {
     next()
 }
 
+const games = {};
 dotenv.config()
-
 app.use(cors())
 app.use(express.json())
 app.use(requestLogger)
@@ -55,7 +54,16 @@ app.listen(PORT, () => {
         `?key=${process.env.STEAM_KEY}`
 
     rq.get(url, function(error, steamHttpResponse, steamHttpBody) {
-        //response.setHeader('Content-Type', 'application/json');
-        //response.send(steamHttpBody);
+        const result = JSON.parse(steamHttpBody);
+
+        for (let i = 0; i < result.applist.apps.length; i++) {
+            const game = result.applist.apps[i];
+
+            if(!games[game.name])
+            {
+                games[game.name] = game.appid;
+            }
+
+        }
     });
 })
