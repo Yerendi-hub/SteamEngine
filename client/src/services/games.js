@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/games'
+
+const baseUrl = `${process.env.NODE_ENV == 'development' ? "http://localhost:3001/" : "https://server-steamengine.herokuapp.com/"}api/games`
 
 const getByID = (id) => {
     const request = axios.get(`${baseUrl}/${id}`)
