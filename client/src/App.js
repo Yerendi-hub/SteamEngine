@@ -15,11 +15,23 @@ const App = () => {
     }
 
     const getGameData = (event) =>{
-        gamesService.getByID(requestedGame)
-            .then(gameResponse =>{
-                setGame(gameResponse)
-                setIsGameSet(true)
-            })
+        if(Number(requestedGame))
+        {
+            gamesService.getByID(requestedGame)
+                .then(gameResponse =>{
+                    setGame(gameResponse)
+                    setIsGameSet(true)
+                })
+        }
+        else{
+            gamesService.getByName(requestedGame)
+                .then(gameResponse =>{
+                    setGame(gameResponse)
+                    setIsGameSet(true)
+                })
+        }
+
+
     }
 
     return (

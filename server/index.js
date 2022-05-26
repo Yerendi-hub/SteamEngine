@@ -30,14 +30,21 @@ app.get('/api/games/:id', (request, response) => {
 })
 
 app.get('/api/games/byname/:name', (request, response) => {
-    const id = String(request.params.name)
-    const url = 'http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/' +
-        `v2/?key=${process.env.STEAM_KEY}&appid=` +
-        id;
-    rq.get(url, function(error, steamHttpResponse, steamHttpBody) {
-        response.setHeader('Content-Type', 'application/json');
-        response.send(steamHttpBody);
-    });
+    const name = String(request.params.name.toLowerCase())
+
+    if(name in games)
+    {
+        const id = games[name]
+        const url = 'http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/' +
+            `v2/?key=${process.env.STEAM_KEY}&appid=` +
+            id;
+        rq.get(url, function(error, steamHttpResponse, steamHttpBody) {
+            response.setHeader('Content-Type', 'application/json');
+            response.send(steamHttpBody);
+        });
+    }
+
+
 })
 
 
@@ -59,11 +66,10 @@ app.listen(PORT, () => {
         for (let i = 0; i < result.applist.apps.length; i++) {
             const game = result.applist.apps[i];
 
-            if(!games[game.name])
+            if(!games[game.name.toLowerCase()])
             {
-                games[game.name] = game.appid;
+                games[game.name.toLowerCase()] = game.appid;
             }
-
         }
     });
 })
