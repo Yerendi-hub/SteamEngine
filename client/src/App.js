@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import Header from './components/Header'
-import Input from "./components/Input";
-import gamesService from "./services/games";
-import RequestGameButton from "./components/RequestGameButton";
-import Game from "./components/Game";
+import Input from './components/Input'
+import gamesService from "./services/games"
+import RequestGameButton from "./components/RequestGameButton"
+import Game from "./components/Game"
 
 const App = () => {
     const [requestedGame, setRequestedGame] = useState('')
