@@ -14,7 +14,7 @@ const App = () => {
         setRequestedGame(event.target.value)
     }
 
-    const getGameData = (event) =>{
+    const getGameData = () =>{
         if(Number(requestedGame))
         {
             gamesService.getByID(requestedGame)
