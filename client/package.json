@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --verbose",
     "eject": "react-scripts eject",
     "deployclient": "cd ../ && git subtree push --prefix client heroku main || true",
     "deployserver": "cd ../ && git subtree push --prefix server heroku-app-backend main || true",
@@ -39,5 +39,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^8.16.0",
+    "eslint-plugin-react": "^7.30.0",
+    "jest": "^28.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

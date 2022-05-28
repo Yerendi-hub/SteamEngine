@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "test": "NODE_ENV=test jest --verbose --runInBand",
     "publishToHeroku": "cd ../ && git subtree push --prefix server heroku-app-backend main || true"
   },
   "keywords": [],
@@ -19,6 +19,9 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "cross-env": "^7.0.3",
+    "eslint": "^8.16.0",
+    "nodemon": "^2.0.16",
+    "supertest": "^6.2.3"
   }
 }
