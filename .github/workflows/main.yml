@@ -6,8 +6,9 @@ on:
       - development # Changing the branch here would also work
 
 jobs:
-  build_client:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - name: actions
         uses: actions/checkout@v3
@@ -16,10 +17,16 @@ jobs:
           fetch-depth: 0
           submodules: recursive
           token: ${{ secrets.PAT }}
-      - name: setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: git
+
+      - name: Add api remote origin
+        run: |
+          git remote add heroku-app-backend https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_SERVE_APP_NAME }}.git
+      - name: Deploy api to Heroku
+        run: |
+          git subtree push --prefix server heroku-app-backend main
+      - name: Add frontend remote origin
+        run: |
+          git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_FRONTEND_APP_NAME }}.git
+      - name: Deploy frontend to Heroku
         run: |
           git subtree push --prefix client heroku main
