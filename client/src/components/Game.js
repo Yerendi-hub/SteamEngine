@@ -3,7 +3,7 @@ const Game = ({game, isGameSet}) => {
     {
         return (
             <label>
-                {game.game.gameName}
+                name: {game.game.gameName}
             </label>)
     }
     else
