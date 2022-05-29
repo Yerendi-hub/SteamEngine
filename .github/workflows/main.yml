@@ -14,7 +14,8 @@ jobs:
         with:
           node-version: '16'
       - name: npm install
-        run: npm install
+        run: | 
+        git subtree push --prefix client npm install
       - name: git
         run: |
           git subtree push --prefix client heroku main
