@@ -3,12 +3,10 @@ const app = require('../app')
 const dotenv = require('dotenv')
 
 const api = supertest(app)
-dotenv.config()
 
 const OLD_ENV = process.env
 
 afterEach(() => {
-    dotenv.config()
     jest.clearAllMocks()
     jest.resetModules()
     process.env = { ...OLD_ENV }
@@ -16,11 +14,13 @@ afterEach(() => {
 })
 
 test('Gloria Victis game is returned when asking for game 327070', async () => {
+    dotenv.config()
     const response = await api.get('/api/games/327070')
     expect("Gloria Victis").toBe('Gloria Victis')
 })
 
 test('Gloria Victis game is returned when asking for game Gloria Victis', async () => {
+    dotenv.config()
     const response = await api.get('/api/games/327070')
     expect(response.body.game.gameName).toBe('Gloria Victis')
 })
