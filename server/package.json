@@ -12,6 +12,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "jest": {
+    "setupFiles": ["dotenv/config"]
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
