@@ -18,6 +18,10 @@ jobs:
           submodules: recursive
           token: ${{ secrets.PAT }}
 
+      - name: Clean install server
+        run: |
+          cd server
+          npm ci
       - name: Add api remote origin
         run: |
           git remote add heroku-app-backend https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_SERVE_APP_NAME }}.git
