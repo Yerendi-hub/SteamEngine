@@ -12,5 +12,5 @@ test('Gloria Victis game is returned when asking for game 327070', async () => {
 test('Gloria Victis game is returned when asking for game Gloria Victis', async () => {
     const response = await api.get('/api/games/327070')
     const json = JSON.parse(response.text)
-    expect(json.game.gameName).toBe('Gloria a')
+    expect(json.game.gameName).toBe('Gloria Victis')
 })
