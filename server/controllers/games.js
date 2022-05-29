@@ -9,6 +9,7 @@ gamesRouter.get('/:id', (request, response) => {
         `v2/?key=${process.env.STEAM_KEY}&appid=` +
         id;
     rq.get(url, function(error, steamHttpResponse, steamHttpBody) {
+        console.log(steamHttpBody)
         response.setHeader('Content-Type', 'application/json');
         response.send(steamHttpBody);
     });
