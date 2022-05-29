@@ -3,6 +3,7 @@ const app = require('../app')
 const dotenv = require('dotenv')
 
 const api = supertest(app)
+dotenv.config()
 
 const OLD_ENV = process.env
 
