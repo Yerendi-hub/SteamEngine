@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          lfs: true
           token: ${{ secrets.PAT }}
       - uses: actions/setup-node@v2
         with:
