@@ -10,6 +10,7 @@ gamesRouter.get('/:id', (request, response) => {
         id;
     rq.get(url, function(error, steamHttpResponse, steamHttpBody) {
         console.log(steamHttpBody)
+        console.log(process.env.STEAM_KEY)
         response.setHeader('Content-Type', 'application/json');
         response.send(steamHttpBody);
     });
