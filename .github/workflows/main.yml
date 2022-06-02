@@ -29,6 +29,8 @@ jobs:
         run: |
           git subtree push --prefix server heroku-app-backend main
       - name: Test api
+        env:
+          STEAM_KEY: ${{ secrets.STEAM_KEY }}
         run: |
           cd server
           npm test
