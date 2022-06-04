@@ -12,5 +12,10 @@ const getByName = (name) => {
     return request.then(response => response.data)
 }
 
+const getTopGames = () => {
+    const request = axios.get(`${baseUrl}/`)
+    return request.then(response => response.data)
+}
 
-export default { getByID,getByName  }
+
+export default { getByID,getByName,getTopGames  }
