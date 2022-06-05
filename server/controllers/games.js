@@ -22,15 +22,23 @@ gamesRouter.get('/:id', (request, response) => {
 gamesRouter.get('/byname/:name', (request, response) => {
     const name = String(request.params.name.toLowerCase())
 
-    if(name in games)
-    {
-        const id = games[name]
-        const url = `https://store.steampowered.com/api/appdetails?appids=` + id;
+    let gameId = 0
+
+    for (const [key, value] of Object.entries(games)) {
+        if(key.includes(name) && gameId == 0)
+        {
+            gameId = value;
+        }
+        else if(key == name)
+        {
+            gameId = value;
+        }
+    }
+        const url = `https://store.steampowered.com/api/appdetails?appids=` + gameId;
         rq.get(url, function(error, steamHttpResponse, steamHttpBody) {
             response.setHeader('Content-Type', 'application/json');
             response.send(steamHttpBody);
         });
-    }
 })
 
 const setInitialData = () =>
