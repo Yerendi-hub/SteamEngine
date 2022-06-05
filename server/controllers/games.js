@@ -25,11 +25,11 @@ gamesRouter.get('/byname/:name', (request, response) => {
     let gameId = 0
 
     for (const [key, value] of Object.entries(games)) {
-        if(key.includes(name) && gameId == 0)
+        if(key.includes(name) && gameId === 0)
         {
             gameId = value;
         }
-        else if(key == name)
+        else if(key === name)
         {
             gameId = value;
         }
