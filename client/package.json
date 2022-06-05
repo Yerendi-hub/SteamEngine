@@ -21,7 +21,8 @@
     "eject": "react-scripts eject",
     "deployclient": "cd ../ && git subtree push --prefix client heroku main || true",
     "deployserver": "cd ../ && git subtree push --prefix server heroku-app-backend main || true",
-    "deploy": "npm run deployclient && npm run deployserver"
+    "deploy": "npm run deployclient && npm run deployserver",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "cypress": "^10.0.2",
     "eslint": "^8.16.0",
     "eslint-plugin-react": "^7.30.0",
     "jest": "^28.1.0"
