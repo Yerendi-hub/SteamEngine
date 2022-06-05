@@ -6,9 +6,12 @@ import RequestGameButton from "./components/RequestGameButton"
 import Game from "./components/Game"
 import Home from "./components/Home"
 import {
+    Routes,
+    Route,
+    Navigate,
     BrowserRouter as Router,
-    Routes, Route, Link
 } from "react-router-dom"
+import GamesList from "./components/GamesList";
 
 const App = () => {
     const [requestedGame, setRequestedGame] = useState('')
@@ -23,6 +26,11 @@ const App = () => {
 
     const setRequestedGameValue = (event) => {
         setRequestedGame(event.target.value)
+
+        if(event.target.value === '')
+        {
+            setIsGameSet(false)
+        }
     }
 
     const getGameData = () =>{
@@ -53,24 +61,19 @@ const App = () => {
     return (
         <Router>
             <div>
+                <Input val={requestedGame} onChange={setRequestedGameValue} label={'gameid'}/>
+                <RequestGameButton action={getGameData} />
             </div>
 
             <Routes>
-                <Route path="/game" element={<Game game={game} isGameSet={isGameSet}/>} />
-                <Route path="/" element={<Home games={games}/>} />
+                <Route path="/game" element={!isGameSet ? <Navigate replace to="/" replace={true}/> :<GamesList games={game} isGameSet={isGameSet}/>} />
+                <Route path="/" element={isGameSet ? <Navigate replace to="/game" replace={true}/> : <Home games={games}/>} />
             </Routes>
 
             <div>
                 <i>SteamEngine, Konrad Kowalczyk 2022</i>
             </div>
         </Router>
-
-        /*<div>
-            <Header text={'SteamEngine'}/>
-            <Input val={requestedGame} onChange={setRequestedGameValue} label={'gameid'}/>
-            <RequestGameButton action={getGameData} />
-            <Game game={game} isGameSet={isGameSet}/>
-           </div>*/
     )
 }
 

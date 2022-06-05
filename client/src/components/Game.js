@@ -1,19 +1,8 @@
-const Game = ({game, isGameSet}) => {
-    if(isGameSet)
-    {
+const Game = ({game}) => {
         return (
-            <label>
-                game name: {game.game.gameName}
-            </label>)
-    }
-    else
-    {
-        return (
-            <label>
-            </label>)
-    }
-
-
+            <li>
+                {game.data.name}
+            </li>)
 }
 
 export default Game

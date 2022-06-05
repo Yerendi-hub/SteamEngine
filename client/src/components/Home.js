@@ -8,19 +8,21 @@ const Home = ({games}) => {
 
     const arr = [];
     Object.keys(games).forEach((key) => {
-        console.log(key)
         arr.push(games[key]);
     });
 
 
     return (
+        <div>
+            <h1>Top 20 games by CCU:</h1>
                 <ul>
                     {
-                        arr.map(game => {
+                        arr.sort((a,b)=> b.ccu - a.ccu).slice(0,20).map(game => {
                             return <GameLabel game={game} />
                         })
                     }
                 </ul>
+        </div>
     )
 }
 

@@ -1,7 +1,7 @@
 const GameLabel = ({game}) => {
     return (
         <li>
-            {game.name}
+            {game.name}: {game.ccu}
         </li>)
 }
 

@@ -25,9 +25,7 @@ gamesRouter.get('/byname/:name', (request, response) => {
     if(name in games)
     {
         const id = games[name]
-        const url = 'http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/' +
-            `v2/?key=${process.env.STEAM_KEY}&appid=` +
-            id;
+        const url = `https://store.steampowered.com/api/appdetails?appids=` + id;
         rq.get(url, function(error, steamHttpResponse, steamHttpBody) {
             response.setHeader('Content-Type', 'application/json');
             response.send(steamHttpBody);
